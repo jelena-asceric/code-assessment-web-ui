@@ -13,6 +13,7 @@ function ProductList({ addItem, products, cartItems }) {
       onClick={() => addItem(product)}
       key={product.id}
       isFeatured={isFeatured}
+      productData={product}
     />
   );
 
@@ -26,10 +27,11 @@ function ProductList({ addItem, products, cartItems }) {
   );
 }
 
+//object to array
 ProductList.propTypes = {
   addItem: PropTypes.func,
-  cartItems: PropTypes.object,
-  products: PropTypes.object
+  cartItems: PropTypes.array,
+  products: PropTypes.array
 };
 
 export default ProductList;

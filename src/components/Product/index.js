@@ -1,6 +1,9 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+
+import { Link } from 'react-router-dom';
 
 import Button from '../Button';
 import Quantity from '../Quantity';
@@ -20,7 +23,8 @@ const Product = ({
   onDecrement,
   onIncrement,
   price,
-  title
+  title,
+  productData
 }) => {
   const isInCart = onIncrement && onDecrement;
   const productClasses = cx(className, styles.product, {
@@ -37,12 +41,16 @@ const Product = ({
 
   return (
     <div className={productClasses}>
-      <img className={styles.image} src={imageSrc} alt={title} />
+      <Link to={`/product/${productData?.id}`}>
+        <img className={styles.image} src={imageSrc} alt={title} />
+      </Link>
       <div className={styles.details}>
-        <div className={styles.text}>
-          <h2 className={styles.title}>{title}</h2>
-          <span className={styles.price}>${finalPrice}</span>
-        </div>
+        <Link to={`/product/${productData?.id}`}>
+          <div className={styles.text}>
+            <h2 className={styles.title}>{title}</h2>
+            <span className={styles.price}>${finalPrice}</span>
+          </div>
+        </Link>
         {isInCart ? (
           <Quantity
             onIncrement={onIncrement}
